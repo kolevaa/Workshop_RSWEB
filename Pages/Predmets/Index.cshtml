@@ -1,0 +1,56 @@
+﻿@page
+@model Workshop_RSWEB.Pages.Predmets.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Predmeti</h1>
+<form method="get" >
+    <p>
+        
+        <input type="text" id="searchstring" name="searchstring" value="" />
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Predmet[0].Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Predmet[0].Semestar)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Predmet[0].Smer)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Predmet) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Semestar)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Smer)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
